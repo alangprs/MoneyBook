@@ -7,25 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D214B3026A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */; };
 		4D88680B26A830F900F70DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88680A26A830F900F70DD5 /* AppDelegate.swift */; };
 		4D88680D26A830F900F70DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88680C26A830F900F70DD5 /* SceneDelegate.swift */; };
-		4D88680F26A830F900F70DD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88680E26A830F900F70DD5 /* ViewController.swift */; };
 		4D88681226A830F900F70DD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D88681026A830F900F70DD5 /* Main.storyboard */; };
 		4D88681526A830F900F70DD5 /* MoneyBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D88681326A830F900F70DD5 /* MoneyBook.xcdatamodeld */; };
 		4D88681726A830FC00F70DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D88681626A830FC00F70DD5 /* Assets.xcassets */; };
 		4D88681A26A830FC00F70DD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D88681826A830FC00F70DD5 /* LaunchScreen.storyboard */; };
+		4D88682226A8312B00F70DD5 /* MonthlyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682126A8312B00F70DD5 /* MonthlyCalendarViewController.swift */; };
+		4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseItemTableViewController.swift; sourceTree = "<group>"; };
 		4D88680726A830F900F70DD5 /* MoneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D88680A26A830F900F70DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D88680C26A830F900F70DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4D88680E26A830F900F70DD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4D88681126A830F900F70DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D88681426A830F900F70DD5 /* MoneyBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoneyBook.xcdatamodel; sourceTree = "<group>"; };
 		4D88681626A830FC00F70DD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D88681926A830FC00F70DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D88681B26A830FC00F70DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D88682126A8312B00F70DD5 /* MonthlyCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarViewController.swift; sourceTree = "<group>"; };
+		4D88682426A831E300F70DD5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		4D88682526A831E300F70DD5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,8 @@
 		4D8867FE26A830F900F70DD5 = {
 			isa = PBXGroup;
 			children = (
+				4D88682626A88DC200F70DD5 /* View */,
+				4D88682326A8313100F70DD5 /* Controller */,
 				4D88680926A830F900F70DD5 /* MoneyBook */,
 				4D88680826A830F900F70DD5 /* Products */,
 			);
@@ -60,7 +68,6 @@
 			children = (
 				4D88680A26A830F900F70DD5 /* AppDelegate.swift */,
 				4D88680C26A830F900F70DD5 /* SceneDelegate.swift */,
-				4D88680E26A830F900F70DD5 /* ViewController.swift */,
 				4D88681026A830F900F70DD5 /* Main.storyboard */,
 				4D88681626A830FC00F70DD5 /* Assets.xcassets */,
 				4D88681826A830FC00F70DD5 /* LaunchScreen.storyboard */,
@@ -68,6 +75,23 @@
 				4D88681326A830F900F70DD5 /* MoneyBook.xcdatamodeld */,
 			);
 			path = MoneyBook;
+			sourceTree = "<group>";
+		};
+		4D88682326A8313100F70DD5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D88682126A8312B00F70DD5 /* MonthlyCalendarViewController.swift */,
+				4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4D88682626A88DC200F70DD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +135,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 4D8867FE26A830F900F70DD5;
 			productRefGroup = 4D88680826A830F900F70DD5 /* Products */;
@@ -140,10 +165,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D88680F26A830F900F70DD5 /* ViewController.swift in Sources */,
 				4D88681526A830F900F70DD5 /* MoneyBook.xcdatamodeld in Sources */,
 				4D88680B26A830F900F70DD5 /* AppDelegate.swift in Sources */,
+				4D88682226A8312B00F70DD5 /* MonthlyCalendarViewController.swift in Sources */,
+				4D214B3026A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift in Sources */,
 				4D88680D26A830F900F70DD5 /* SceneDelegate.swift in Sources */,
+				4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +181,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4D88681126A830F900F70DD5 /* Base */,
+				4D88682426A831E300F70DD5 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -162,6 +190,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4D88681926A830FC00F70DD5 /* Base */,
+				4D88682526A831E300F70DD5 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -173,6 +202,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -234,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
