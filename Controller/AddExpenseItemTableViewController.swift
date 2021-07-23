@@ -12,14 +12,26 @@ class AddExpenseItemTableViewController: UITableViewController {
     @IBOutlet weak var datePickerTextField: UITextField!
     //收入、支出 選擇
     @IBOutlet weak var SelectTypeSegmented: UISegmentedControl!
+    //顯示類別
+    @IBOutlet weak var categoryLabel: UILabel!
+    //顯示帳戶
+    @IBOutlet weak var accountLabel: UILabel!
     
     let datePicker = UIDatePicker()
-    
+    var isExpenseCategory:Bool? //控制支出、收入
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatepicker()//初始化datePicker
+        upDataUI()
         
+    }
+    //載入UI畫面
+    func upDataUI(){
+        //初始化 支出-類別
+        categoryLabel.text = Expense.expenseCategories.first?.rawValue
+        //初始化 支出-帳戶
+        accountLabel.text = Expense.accounts.first?.rawValue
     }
     
     //定義tableview，選到的cell要做的事情
@@ -78,7 +90,24 @@ class AddExpenseItemTableViewController: UITableViewController {
         datePickerTextField.inputView = datePicker //dateTextfield點下去時跳出datePicker選單
         datePickerTextField.inputAccessoryView = createToolBar() //執行工具
     }
+    //選擇類別
+    @IBAction func changeCategory(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0{
+            isExpenseCategory = true
+            //顯示 支出 選單-類別的第一個
+            categoryLabel.text = Expense.expenseCategories.first?.rawValue
+            
+        }else{
+            isExpenseCategory = false
+            //顯示 收入 選單-類別的第一個
+            categoryLabel.text = Expense.incomeCategories.first?.rawValue
+        }
+    }
     
+    //傳資料到選類別頁面
+    @IBSegueAction func goSelectType(_ coder: NSCoder) -> SelectTypeCollectionViewController? {
+        return SelectTypeCollectionViewController(coder: coder, isExpenseCategory: isExpenseCategory ?? true)
+    }
     
     // MARK: - Table view data source
     

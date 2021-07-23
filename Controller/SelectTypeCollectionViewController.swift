@@ -11,42 +11,59 @@ private let reuseIdentifier = "\(TypeViewCellCollectionViewCell.self)"
 
 class SelectTypeCollectionViewController: UICollectionViewController {
     
-//    var isExpenseCategory:Bool? //控制是收入還是支出類別
-//    init?(coder:NSCoder,isExpenseCategory:Bool){
-//        self.isExpenseCategory = isExpenseCategory
-//        super .init(coder: coder)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    var isExpenseCategory:Bool? //控制是收入還是支出類別
+    init?(coder:NSCoder,isExpenseCategory:Bool){
+        self.isExpenseCategory = isExpenseCategory
+        super .init(coder: coder)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
 
    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-
+    //選擇支出、收入 要顯示的section數量
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 3
+        //如果選擇到是支出 回傳定義支出的enum內容
+        if isExpenseCategory == true{
+            print("支出")
+            return Expense.expenseCategories.count
+        }else{
+            print("收入")
+            return Expense.incomeCategories.count
+        }
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //轉型成自定義的cell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? TypeViewCellCollectionViewCell else{return UICollectionViewCell()}
-        cell.typeImageView.image = UIImage(named: "clothesIcon")
-    
         
-    
+        //設定cell 要顯示的內容
+        //如果是選到 支出
+        if isExpenseCategory == true{
+            let expenseCategories = Expense.expenseCategories[indexPath.row]
+            cell.typeImageView.image = UIImage(named: "\(expenseCategories.rawValue)")
+            cell.typeNameLabel.text = expenseCategories.rawValue
+        }else{
+            //選到的是 收入
+            let incomeCategories = Expense.incomeCategories[indexPath.row]
+            cell.typeImageView.image = UIImage(named: "\(incomeCategories.rawValue)")
+            cell.typeNameLabel.text = incomeCategories.rawValue
+        }
+
         return cell
     }
 

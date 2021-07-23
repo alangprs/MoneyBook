@@ -375,15 +375,20 @@
                             <rect key="frame" x="115" y="5.6666666666666679" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="收入" width="79.5"/>
-                                <segment title="支出"/>
+                                <segment title="支出" width="79.5"/>
+                                <segment title="收入"/>
                             </segments>
+                            <connections>
+                                <action selector="changeCategory:" destination="gge-mM-SOH" eventType="valueChanged" id="2uB-2h-X9Z"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="SelectTypeSegmented" destination="zNa-vJ-OT1" id="xaz-kp-5a6"/>
+                        <outlet property="accountLabel" destination="MLT-AI-NqK" id="Lf5-Dq-4G9"/>
+                        <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
-                        <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" id="EqR-jy-SP5"/>
+                        <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>
                         <segue destination="mPO-Un-mjh" kind="show" identifier="AccountTableViewController" id="xCe-LH-bTX"/>
                     </connections>
                 </tableViewController>

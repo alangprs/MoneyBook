@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4D214B3026A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */; };
-		4D214B3226AA800000A08E59 /* ExpenseItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3126AA800000A08E59 /* ExpenseItemData.swift */; };
+		4D214B3226AA800000A08E59 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3126AA800000A08E59 /* Enums.swift */; };
 		4D214B3526AA936600A08E59 /* SelectTypeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3426AA936600A08E59 /* SelectTypeCollectionViewController.swift */; };
 		4D214B3726AA953700A08E59 /* TypeViewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3626AA953700A08E59 /* TypeViewCellCollectionViewCell.swift */; };
 		4D214B3926AABFDA00A08E59 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3826AABFDA00A08E59 /* AccountTableViewController.swift */; };
+		4D214B3B26AAC7C800A08E59 /* ExpenseItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D214B3A26AAC7C800A08E59 /* ExpenseItemData.swift */; };
 		4D88680B26A830F900F70DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88680A26A830F900F70DD5 /* AppDelegate.swift */; };
 		4D88680D26A830F900F70DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88680C26A830F900F70DD5 /* SceneDelegate.swift */; };
 		4D88681226A830F900F70DD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D88681026A830F900F70DD5 /* Main.storyboard */; };
@@ -24,10 +25,11 @@
 
 /* Begin PBXFileReference section */
 		4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseItemTableViewController.swift; sourceTree = "<group>"; };
-		4D214B3126AA800000A08E59 /* ExpenseItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItemData.swift; sourceTree = "<group>"; };
+		4D214B3126AA800000A08E59 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		4D214B3426AA936600A08E59 /* SelectTypeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTypeCollectionViewController.swift; sourceTree = "<group>"; };
 		4D214B3626AA953700A08E59 /* TypeViewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D214B3826AABFDA00A08E59 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		4D214B3A26AAC7C800A08E59 /* ExpenseItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItemData.swift; sourceTree = "<group>"; };
 		4D88680726A830F900F70DD5 /* MoneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D88680A26A830F900F70DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D88680C26A830F900F70DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +58,8 @@
 		4D214B3326AA800400A08E59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4D214B3126AA800000A08E59 /* ExpenseItemData.swift */,
+				4D214B3126AA800000A08E59 /* Enums.swift */,
+				4D214B3A26AAC7C800A08E59 /* ExpenseItemData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,7 +196,8 @@
 				4D88680D26A830F900F70DD5 /* SceneDelegate.swift in Sources */,
 				4D214B3926AABFDA00A08E59 /* AccountTableViewController.swift in Sources */,
 				4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */,
-				4D214B3226AA800000A08E59 /* ExpenseItemData.swift in Sources */,
+				4D214B3226AA800000A08E59 /* Enums.swift in Sources */,
+				4D214B3B26AAC7C800A08E59 /* ExpenseItemData.swift in Sources */,
 				4D214B3726AA953700A08E59 /* TypeViewCellCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
