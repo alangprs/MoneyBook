@@ -39,6 +39,21 @@ class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
     }
     
     
- 
-
+    //讓AddExpenseItemTableViewController 回來
+    @IBAction func unwindToAddExpenseItemTableViewController(_ unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
+//    //使用prepare將這頁tableView cell資料傳到下一頁修改
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //如果有取得上一頁的controller、這頁controller的tableView選中的row有資料，將這頁資料存給下一頁
+//        if let controller = segue.destination as? AddExpenseItemTableViewController,
+//           let row = self.monthlyCalendarTableView.indexPathForSelectedRow?.row{
+//
+//            controller.AddExpenseItemData = monthlyCalendarDataArray[row]
+//        }
+//    }
+    
+    
+    
 }

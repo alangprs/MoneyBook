@@ -10,13 +10,49 @@ import UIKit
 class AddExpenseItemTableViewController: UITableViewController {
     
     @IBOutlet weak var datePickerTextField: UITextField!
+    //收入、支出 選擇
+    @IBOutlet weak var SelectTypeSegmented: UISegmentedControl!
+    
     let datePicker = UIDatePicker()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatepicker()//初始化datePicker
         
     }
+    
+    //定義tableview，選到的cell要做的事情
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //選到的是必要資料 還是 選填資料
+        let dataCategory = DataCategorys.allCases[indexPath.section]
+        switch dataCategory {
+        //必要資料
+        case .neededDatas:
+            //定義必要資料裡 每個欄位的資料內容、要做的事情
+            let neededDatas = NeededDatas.allCases[indexPath.row]
+            switch neededDatas {
+            case .date: //日期
+                return
+            case .amount://金額
+                return
+            case .category: //類別
+                performSegue(withIdentifier: "\(SelectTypeCollectionViewController.self)", sender: nil)
+            case .account: //帳戶類別
+                performSegue(withIdentifier: "\(AccountTableViewController.self)", sender: nil)
+            }
+        //選填資料 (功能還未寫完)
+        case .additionalDatas:
+            let additionalDatas = AdditionalDatas.allCases[indexPath.row]
+            switch additionalDatas {
+            case .receiptPhoto: //收據照片
+                return
+            case .memo://備註
+                return
+            }
+        }
+    }
+    
     //創造一個裝datePicker的容器
     func createToolBar() -> UIToolbar{
         let toolbar = UIToolbar() //創造一個工具功能
