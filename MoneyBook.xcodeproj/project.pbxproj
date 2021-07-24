@@ -21,6 +21,7 @@
 		4D88681A26A830FC00F70DD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D88681826A830FC00F70DD5 /* LaunchScreen.storyboard */; };
 		4D88682226A8312B00F70DD5 /* MonthlyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682126A8312B00F70DD5 /* MonthlyCalendarViewController.swift */; };
 		4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */; };
+		4DC0C53126ABDC2700E93F66 /* AccountCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0C53026ABDC2700E93F66 /* AccountCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4D88682426A831E300F70DD5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		4D88682526A831E300F70DD5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarCellTableViewCell.swift; sourceTree = "<group>"; };
+		4DC0C53026ABDC2700E93F66 /* AccountCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountCellTableViewCell.swift; path = View/AccountCellTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */,
 				4D214B3626AA953700A08E59 /* TypeViewCellCollectionViewCell.swift */,
+				4DC0C53026ABDC2700E93F66 /* AccountCellTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				4D214B3926AABFDA00A08E59 /* AccountTableViewController.swift in Sources */,
 				4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */,
 				4D214B3226AA800000A08E59 /* Enums.swift in Sources */,
+				4DC0C53126ABDC2700E93F66 /* AccountCellTableViewCell.swift in Sources */,
 				4D214B3B26AAC7C800A08E59 /* ExpenseItemData.swift in Sources */,
 				4D214B3726AA953700A08E59 /* TypeViewCellCollectionViewCell.swift in Sources */,
 			);

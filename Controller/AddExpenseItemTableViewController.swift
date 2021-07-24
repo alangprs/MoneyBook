@@ -33,10 +33,12 @@ class AddExpenseItemTableViewController: UITableViewController {
     }
     //載入UI畫面
     func upDataUI(){
-        //初始化 支出-類別
+        //初始化 類別
         categoryLabel.text = Expense.expenseCategories.first?.rawValue
-        //初始化 支出-帳戶
+        categoryImage.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
+        //初始化 帳戶
         accountLabel.text = Expense.accounts.first?.rawValue
+        accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
     }
     
     //定義tableview，選到的cell要做的事情
@@ -99,16 +101,18 @@ class AddExpenseItemTableViewController: UITableViewController {
     @IBAction func changeCategory(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0{
             isExpenseCategory = true
-            //顯示 支出 選單-類別的第一個
+            //預設顯示 支出 選單-類別的第一個
             categoryLabel.text = Expense.expenseCategories.first?.rawValue
             categoryImage.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
-            
-        }else{
+        }else{ //選擇到收入時
             isExpenseCategory = false
             //顯示 收入 選單-類別的第一個
             categoryLabel.text = Expense.incomeCategories.first?.rawValue
             categoryImage.image = UIImage(named: Expense.incomeCategories.first!.rawValue)
         }
+        //預設顯示 帳戶 選單的第一個
+        accountLabel.text = Expense.accounts.first?.rawValue
+        accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
     }
     
     //傳資料到SelectTypeCollectionViewController
@@ -116,7 +120,7 @@ class AddExpenseItemTableViewController: UITableViewController {
         return SelectTypeCollectionViewController(coder: coder, isExpenseCategory: isExpenseCategory ?? true)
     }
     
-    //從 選擇類別、選擇帳戶 回來,再取得選取到的row資料後，顯示在這頁
+    //讓 選擇類別、選擇帳戶 回來,再取得選取到的row資料後，顯示在這頁
     @IBAction func unwindToAddExpenseItemTableViewController(_ unwindSegue: UIStoryboardSegue) {
             //如果是從選擇類別回的資料 設定支出、收入類別
         if let categorySource = unwindSegue.source as? SelectTypeCollectionViewController,
@@ -133,6 +137,14 @@ class AddExpenseItemTableViewController: UITableViewController {
                 categoryLabel.text = category
                 categoryImage.image = UIImage(named: category)
             }
+            
+            //如果資料是從 選擇 帳戶 回來
+        }else if let accountSource = unwindSegue.source as? AccountTableViewController,
+                 let row = accountSource.row{
+            
+            let account = Expense.accounts[row].rawValue
+            accountLabel.text = account
+            accountImage.image = UIImage(named: account)
             
         }
        
