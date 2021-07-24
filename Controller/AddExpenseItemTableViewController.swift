@@ -8,14 +8,19 @@
 import UIKit
 
 class AddExpenseItemTableViewController: UITableViewController {
-    
+    //日期顯示
     @IBOutlet weak var datePickerTextField: UITextField!
     //收入、支出 選擇
     @IBOutlet weak var SelectTypeSegmented: UISegmentedControl!
     //顯示類別
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     //顯示帳戶
     @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var accountImage: UIImageView!
+    //金額圖片
+    @IBOutlet weak var amountImage: UIImageView!
+    @IBOutlet weak var amountTextField: UITextField!
     
     let datePicker = UIDatePicker()
     var isExpenseCategory:Bool? //控制支出、收入
@@ -96,17 +101,41 @@ class AddExpenseItemTableViewController: UITableViewController {
             isExpenseCategory = true
             //顯示 支出 選單-類別的第一個
             categoryLabel.text = Expense.expenseCategories.first?.rawValue
+            categoryImage.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
             
         }else{
             isExpenseCategory = false
             //顯示 收入 選單-類別的第一個
             categoryLabel.text = Expense.incomeCategories.first?.rawValue
+            categoryImage.image = UIImage(named: Expense.incomeCategories.first!.rawValue)
         }
     }
     
-    //傳資料到選類別頁面
+    //傳資料到SelectTypeCollectionViewController
     @IBSegueAction func goSelectType(_ coder: NSCoder) -> SelectTypeCollectionViewController? {
         return SelectTypeCollectionViewController(coder: coder, isExpenseCategory: isExpenseCategory ?? true)
+    }
+    
+    //從 選擇類別、選擇帳戶 回來,再取得選取到的row資料後，顯示在這頁
+    @IBAction func unwindToAddExpenseItemTableViewController(_ unwindSegue: UIStoryboardSegue) {
+            //如果是從選擇類別回的資料 設定支出、收入類別
+        if let categorySource = unwindSegue.source as? SelectTypeCollectionViewController,
+           let row = categorySource.row{
+            //更新選到的 支出類別
+            if SelectTypeSegmented.selectedSegmentIndex == 0{
+                let category = Expense.expenseCategories[row].rawValue
+                categoryLabel.text = category
+                categoryImage.image = UIImage(named: category)
+                
+            }else{
+                //更新選到 收入 類別
+                let category = Expense.incomeCategories[row].rawValue
+                categoryLabel.text = category
+                categoryImage.image = UIImage(named: category)
+            }
+            
+        }
+       
     }
     
     // MARK: - Table view data source

@@ -385,7 +385,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="SelectTypeSegmented" destination="zNa-vJ-OT1" id="xaz-kp-5a6"/>
+                        <outlet property="accountImage" destination="EKs-Cd-QFP" id="zbm-Vx-5SS"/>
                         <outlet property="accountLabel" destination="MLT-AI-NqK" id="Lf5-Dq-4G9"/>
+                        <outlet property="amountImage" destination="uNW-kT-uiV" id="iz2-Hb-r22"/>
+                        <outlet property="amountTextField" destination="coM-54-tea" id="SgF-IW-Pwv"/>
+                        <outlet property="categoryImage" destination="nQ4-yH-HXL" id="nwv-Rf-nel"/>
                         <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
                         <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>
@@ -471,6 +475,7 @@
                                 <connections>
                                     <outlet property="typeImageView" destination="XBb-va-BJi" id="FgD-VE-Rzb"/>
                                     <outlet property="typeNameLabel" destination="aLj-b8-i21" id="kn6-JL-xeJ"/>
+                                    <segue destination="n58-Ax-RcR" kind="unwind" unwindAction="unwindToAddExpenseItemTableViewController:" id="Yaj-QB-RVp"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -482,6 +487,7 @@
                     <navigationItem key="navigationItem" title="類別" id="dUg-dc-MVC"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNB-QP-bk8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="n58-Ax-RcR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1435" y="823"/>
         </scene>

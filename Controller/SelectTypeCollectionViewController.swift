@@ -20,12 +20,19 @@ class SelectTypeCollectionViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var row:Int? //存 選到的第幾個照片(row)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
     }
 
+    //準備要回傳給AddExpenseItemTableViewController選到的row
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        row = collectionView.indexPathsForSelectedItems?.first?.row
+        print("選到的內容",row)
+    }
    
     // MARK: UICollectionViewDataSource
     
