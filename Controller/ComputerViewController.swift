@@ -24,6 +24,8 @@ class ComputerViewController: UIViewController {
     var performingMath = false
     //是否要開啟新的計算
     var startNew = true
+    //存運算出的結果
+    var sum:Int?
     
     
     override func viewDidLoad() {
@@ -119,14 +121,14 @@ class ComputerViewController: UIViewController {
             startNew = true
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    //將資料回傳 AddExpenseItemTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if sumLabel.text != nil{
+            sum = Int(sumLabel.text!)!
+        }
     }
-    */
+   
+    
 
 }

@@ -122,7 +122,7 @@ class AddExpenseItemTableViewController: UITableViewController {
         return SelectTypeCollectionViewController(coder: coder, isExpenseCategory: isExpenseCategory ?? true)
     }
     
-    //讓 選擇類別、選擇帳戶 回來,再取得選取到的row資料後，顯示在這頁
+    //讓 選擇類別、選擇帳戶、填寫金額 回來,再取得選取到的row資料後，顯示在這頁
     @IBAction func unwindToAddExpenseItemTableViewController(_ unwindSegue: UIStoryboardSegue) {
             //如果是從選擇類別回的資料 設定支出、收入類別
         if let categorySource = unwindSegue.source as? SelectTypeCollectionViewController,
@@ -148,6 +148,10 @@ class AddExpenseItemTableViewController: UITableViewController {
             accountLabel.text = account
             accountImage.image = UIImage(named: account)
             
+            //從計算機回來
+        }else if let sumNumber = unwindSegue.source as? ComputerViewController,
+                 let sum = sumNumber.sum{
+            moneyNumber.text = "\(sum)"
         }
        
     }

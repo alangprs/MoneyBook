@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7vp-to-lny">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ywZ-Fn-FCz">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -223,7 +223,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7vp-to-lny" kind="presentation" id="qkQ-94-o0j"/>
+                                            <segue destination="7vp-to-lny" kind="presentation" id="6X3-hY-EEs"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="wmd-bP-cXV">
@@ -402,7 +402,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzu-BV-iSk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7qx-av-L4a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1970.7692307692307" y="82.464454976303315"/>
+            <point key="canvasLocation" x="2129" y="83"/>
         </scene>
         <!--Computer View Controller-->
         <scene sceneID="WkA-zR-kyE">
@@ -416,10 +416,21 @@
                                 <rect key="frame" x="0.0" y="512" width="390" height="328"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-N5-zyr">
-                                        <rect key="frame" x="40" y="46.666666666666629" width="310" height="235"/>
+                                        <rect key="frame" x="40" y="19" width="310" height="290"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4n-3A-KwJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="310" height="30"/>
+                                                <color key="backgroundColor" name="AccentColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="確定">
+                                                    <color key="titleColor" systemColor="systemPinkColor"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="BEq-cP-L8F" kind="unwind" unwindAction="unwindToAddExpenseItemTableViewController:" id="hrR-HP-TO1"/>
+                                                </connections>
+                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EP4-tQ-dk5">
-                                                <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
+                                                <rect key="frame" x="0.0" y="55" width="310" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugB-bt-IdL">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
@@ -484,7 +495,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-Nf-N6k">
-                                                <rect key="frame" x="0.0" y="65" width="310" height="40"/>
+                                                <rect key="frame" x="0.0" y="120" width="310" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwC-Hg-182">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
@@ -549,7 +560,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="my1-76-MzE">
-                                                <rect key="frame" x="0.0" y="130" width="310" height="40"/>
+                                                <rect key="frame" x="0.0" y="185" width="310" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JkI-xq-sGS">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
@@ -614,7 +625,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nuk-Jz-JIa">
-                                                <rect key="frame" x="0.0" y="195" width="310" height="40"/>
+                                                <rect key="frame" x="0.0" y="250" width="310" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4de-iH-rhA">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
@@ -727,8 +738,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5d-iy-JuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="BEq-cP-L8F" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2729.2307692307691" y="81.753554502369667"/>
+            <point key="canvasLocation" x="2831" y="823"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s3F-Fu-hvD">
