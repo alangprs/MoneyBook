@@ -22,6 +22,8 @@
 		4D88682226A8312B00F70DD5 /* MonthlyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682126A8312B00F70DD5 /* MonthlyCalendarViewController.swift */; };
 		4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */; };
 		4DC0C53126ABDC2700E93F66 /* AccountCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0C53026ABDC2700E93F66 /* AccountCellTableViewCell.swift */; };
+		4DC0C53526AC0D2000E93F66 /* ComputerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0C53426AC0D2000E93F66 /* ComputerViewController.swift */; };
+		4DC0C53726AC5FD100E93F66 /* FormulaEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0C53626AC5FD100E93F66 /* FormulaEnums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		4D88682526A831E300F70DD5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4D88682726A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarCellTableViewCell.swift; sourceTree = "<group>"; };
 		4DC0C53026ABDC2700E93F66 /* AccountCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountCellTableViewCell.swift; path = View/AccountCellTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		4DC0C53426AC0D2000E93F66 /* ComputerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerViewController.swift; sourceTree = "<group>"; };
+		4DC0C53626AC5FD100E93F66 /* FormulaEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			children = (
 				4D214B3126AA800000A08E59 /* Enums.swift */,
 				4D214B3A26AAC7C800A08E59 /* ExpenseItemData.swift */,
+				4DC0C53626AC5FD100E93F66 /* FormulaEnums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 				4D214B2F26A9AC1B00A08E59 /* AddExpenseItemTableViewController.swift */,
 				4D214B3426AA936600A08E59 /* SelectTypeCollectionViewController.swift */,
 				4D214B3826AABFDA00A08E59 /* AccountTableViewController.swift */,
+				4DC0C53426AC0D2000E93F66 /* ComputerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DC0C53526AC0D2000E93F66 /* ComputerViewController.swift in Sources */,
 				4D214B3526AA936600A08E59 /* SelectTypeCollectionViewController.swift in Sources */,
 				4D88681526A830F900F70DD5 /* MoneyBook.xcdatamodeld in Sources */,
 				4D88680B26A830F900F70DD5 /* AppDelegate.swift in Sources */,
@@ -199,6 +206,7 @@
 				4D88680D26A830F900F70DD5 /* SceneDelegate.swift in Sources */,
 				4D214B3926AABFDA00A08E59 /* AccountTableViewController.swift in Sources */,
 				4D88682826A88DF700F70DD5 /* MonthlyCalendarCellTableViewCell.swift in Sources */,
+				4DC0C53726AC5FD100E93F66 /* FormulaEnums.swift in Sources */,
 				4D214B3226AA800000A08E59 /* Enums.swift in Sources */,
 				4DC0C53126ABDC2700E93F66 /* AccountCellTableViewCell.swift in Sources */,
 				4D214B3B26AAC7C800A08E59 /* ExpenseItemData.swift in Sources */,

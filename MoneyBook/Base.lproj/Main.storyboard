@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ywZ-Fn-FCz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7vp-to-lny">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -222,6 +222,9 @@
                                                 <constraint firstItem="coM-54-tea" firstAttribute="top" secondItem="OiG-NC-USD" secondAttribute="topMargin" constant="1" id="ucU-Pf-bhz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7vp-to-lny" kind="presentation" id="qkQ-94-o0j"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="wmd-bP-cXV">
                                         <rect key="frame" x="0.0" y="152.33333396911621" width="390" height="64"/>
@@ -388,10 +391,10 @@
                         <outlet property="accountImage" destination="EKs-Cd-QFP" id="zbm-Vx-5SS"/>
                         <outlet property="accountLabel" destination="MLT-AI-NqK" id="Lf5-Dq-4G9"/>
                         <outlet property="amountImage" destination="uNW-kT-uiV" id="iz2-Hb-r22"/>
-                        <outlet property="amountTextField" destination="coM-54-tea" id="SgF-IW-Pwv"/>
                         <outlet property="categoryImage" destination="nQ4-yH-HXL" id="nwv-Rf-nel"/>
                         <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
+                        <outlet property="moneyNumber" destination="coM-54-tea" id="xh1-77-q1W"/>
                         <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>
                         <segue destination="mPO-Un-mjh" kind="show" identifier="AccountTableViewController" id="xCe-LH-bTX"/>
                     </connections>
@@ -399,7 +402,333 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzu-BV-iSk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7qx-av-L4a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1972" y="83"/>
+            <point key="canvasLocation" x="1970.7692307692307" y="82.464454976303315"/>
+        </scene>
+        <!--Computer View Controller-->
+        <scene sceneID="WkA-zR-kyE">
+            <objects>
+                <viewController storyboardIdentifier="ComputerViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="7vp-to-lny" customClass="ComputerViewController" customModule="MoneyBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W2R-XV-DdV">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Uh-rQ-jCg">
+                                <rect key="frame" x="0.0" y="512" width="390" height="328"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-N5-zyr">
+                                        <rect key="frame" x="40" y="46.666666666666629" width="310" height="235"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EP4-tQ-dk5">
+                                                <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugB-bt-IdL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="hmT-DR-MRQ"/>
+                                                            <constraint firstAttribute="height" constant="40" id="tUZ-91-H7b"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="7">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="mt0-DG-XNI"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zyq-rs-xQY">
+                                                        <rect key="frame" x="80" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="jyF-Z6-CC5"/>
+                                                            <constraint firstAttribute="height" constant="40" id="pXr-DG-YK8"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="8">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="trc-y7-Fov"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzV-1u-W9c">
+                                                        <rect key="frame" x="160" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="32C-2b-sVn"/>
+                                                            <constraint firstAttribute="width" constant="70" id="61h-Kb-hq6"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="9">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="BTn-lZ-OSi"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyF-U4-8hV">
+                                                        <rect key="frame" x="240" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="CUi-Ef-ooH"/>
+                                                            <constraint firstAttribute="width" constant="70" id="xID-de-Z7p"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="÷">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="divide:" destination="7vp-to-lny" eventType="touchUpInside" id="WkO-Ow-azN"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-Nf-N6k">
+                                                <rect key="frame" x="0.0" y="65" width="310" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwC-Hg-182">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="8s2-kD-0fL"/>
+                                                            <constraint firstAttribute="height" constant="40" id="kpT-og-qD1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="4">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="qWX-L1-MeA"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7C-wD-DSN">
+                                                        <rect key="frame" x="80" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="UpY-8K-0bz"/>
+                                                            <constraint firstAttribute="width" constant="70" id="chZ-re-zXg"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="5">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="mEB-VC-vlv"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-wG-Mml">
+                                                        <rect key="frame" x="160" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="DbI-ck-PSn"/>
+                                                            <constraint firstAttribute="height" constant="40" id="TaC-dq-Gs3"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="6">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="9Vb-T3-3yK"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxh-7M-0Dw">
+                                                        <rect key="frame" x="240" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Ith-8f-bYc"/>
+                                                            <constraint firstAttribute="width" constant="70" id="fps-GN-5qe"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="×">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="multiply:" destination="7vp-to-lny" eventType="touchUpInside" id="pWc-Gy-yOF"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="my1-76-MzE">
+                                                <rect key="frame" x="0.0" y="130" width="310" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JkI-xq-sGS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="8Qp-37-TPb"/>
+                                                            <constraint firstAttribute="width" constant="70" id="9Mt-Ig-feg"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="1">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="Q7p-dN-m81"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqu-lw-oNW">
+                                                        <rect key="frame" x="80" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="YXY-fA-TEN"/>
+                                                            <constraint firstAttribute="height" constant="40" id="uC3-vm-cSs"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="2">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="oaQ-ju-Z0m"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeH-wW-FYQ">
+                                                        <rect key="frame" x="160" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="YtA-zH-VPX"/>
+                                                            <constraint firstAttribute="width" constant="70" id="okG-9d-IMk"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="3">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="xsY-Vb-Gdy"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF8-fQ-SQn">
+                                                        <rect key="frame" x="240" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="9l0-FE-Bw5"/>
+                                                            <constraint firstAttribute="width" constant="70" id="RAz-Q8-D8Y"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="−">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="subtract:" destination="7vp-to-lny" eventType="touchUpInside" id="wjn-BC-Mhw"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nuk-Jz-JIa">
+                                                <rect key="frame" x="0.0" y="195" width="310" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4de-iH-rhA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="Qw9-he-0nJ"/>
+                                                            <constraint firstAttribute="height" constant="40" id="y0F-Xc-cA5"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="AC">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clear:" destination="7vp-to-lny" eventType="touchUpInside" id="Whf-wD-fyb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fi3-kT-Re8">
+                                                        <rect key="frame" x="80" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="iuU-hW-8nh"/>
+                                                            <constraint firstAttribute="width" constant="70" id="oJw-Xn-yUh"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="0">
+                                                            <color key="titleColor" name="AccentColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="calculate:" destination="7vp-to-lny" eventType="touchUpInside" id="GCc-Ob-3xg"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXv-ti-zoM">
+                                                        <rect key="frame" x="160" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="70" id="JUb-gy-bAw"/>
+                                                            <constraint firstAttribute="height" constant="40" id="Rq7-PC-XVT"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="=">
+                                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="giveMeAnswer:" destination="7vp-to-lny" eventType="touchUpInside" id="IlT-E3-bdB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdJ-xP-tNu">
+                                                        <rect key="frame" x="240" y="0.0" width="70" height="40"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="9oS-89-cJK"/>
+                                                            <constraint firstAttribute="width" constant="70" id="B1I-WT-NYc"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <state key="normal" title="✚">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="add:" destination="7vp-to-lny" eventType="touchUpInside" id="KS2-Ay-oEh"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Y5N-N5-zyr" firstAttribute="centerY" secondItem="2Uh-rQ-jCg" secondAttribute="centerY" id="97N-HL-5eL"/>
+                                    <constraint firstItem="Y5N-N5-zyr" firstAttribute="centerX" secondItem="2Uh-rQ-jCg" secondAttribute="centerX" id="rQK-Jg-yT0"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JD-yn-poJ">
+                                <rect key="frame" x="0.0" y="409" width="390" height="95"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mk-VB-yJQ">
+                                        <rect key="frame" x="180" y="20.666666666666686" width="30" height="54"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstItem="7mk-VB-yJQ" firstAttribute="centerY" secondItem="1JD-yn-poJ" secondAttribute="centerY" id="2qo-nY-jAL"/>
+                                    <constraint firstItem="7mk-VB-yJQ" firstAttribute="centerX" secondItem="1JD-yn-poJ" secondAttribute="centerX" id="yTg-Qx-XQE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9zh-be-nGo"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="top" secondItem="W2R-XV-DdV" secondAttribute="top" constant="512" id="1gI-MP-xOn"/>
+                            <constraint firstItem="1JD-yn-poJ" firstAttribute="top" secondItem="9zh-be-nGo" secondAttribute="top" constant="365" id="3tp-ef-tHD"/>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="leading" secondItem="W2R-XV-DdV" secondAttribute="leading" id="FVA-OF-TU8"/>
+                            <constraint firstAttribute="trailing" secondItem="2Uh-rQ-jCg" secondAttribute="trailing" id="QAx-X8-JIM"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="2Uh-rQ-jCg" secondAttribute="bottom" constant="-30" id="bh6-4f-LBG"/>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="trailing" secondItem="1JD-yn-poJ" secondAttribute="trailing" id="gbE-Lc-OoN"/>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="top" secondItem="1JD-yn-poJ" secondAttribute="bottom" constant="8" id="hn7-YK-iWy"/>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="leading" secondItem="1JD-yn-poJ" secondAttribute="leading" id="qCC-Hv-kde"/>
+                            <constraint firstItem="2Uh-rQ-jCg" firstAttribute="top" secondItem="1JD-yn-poJ" secondAttribute="bottom" constant="8" symbolic="YES" id="sWf-uZ-k24"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HWv-To-hcZ"/>
+                    <connections>
+                        <outlet property="sumLabel" destination="7mk-VB-yJQ" id="0wq-bT-gEf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B5d-iy-JuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2729.2307692307691" y="81.753554502369667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s3F-Fu-hvD">
@@ -583,8 +912,20 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

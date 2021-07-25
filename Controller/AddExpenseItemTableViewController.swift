@@ -10,6 +10,8 @@ import UIKit
 class AddExpenseItemTableViewController: UITableViewController {
     //日期顯示
     @IBOutlet weak var datePickerTextField: UITextField!
+    //輸入金額
+    @IBOutlet weak var moneyNumber: UITextField!
     //收入、支出 選擇
     @IBOutlet weak var SelectTypeSegmented: UISegmentedControl!
     //顯示類別
@@ -149,6 +151,9 @@ class AddExpenseItemTableViewController: UITableViewController {
         }
        
     }
+    
+    
+    
     
     // MARK: - Table view data source
     
