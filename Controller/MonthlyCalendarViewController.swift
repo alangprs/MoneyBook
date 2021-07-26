@@ -21,21 +21,26 @@ class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
     
     //下方tableview
     @IBOutlet weak var monthlyCalendarTableView: UITableView!
-    //選日期
+    //日期
     @IBOutlet weak var monthlyCalendarDatePicker: UIDatePicker!
     
-    
+    var date:Date?
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        upDataUI()
         
+    }
+    func upDataUI(){
+        date = monthlyCalendarDatePicker.date
     }
     
     //選擇日期
     @IBAction func selectDate(_ sender: UIDatePicker) {
         let dateValue = DateFormatter()
         dateValue.dateFormat = "yyyy年MM月dd日"
-        print(dateValue.string(from: monthlyCalendarDatePicker.date))
+        //存點選到的日期
+        date = monthlyCalendarDatePicker.date
     }
     
     
@@ -44,16 +49,10 @@ class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
         
     }
     
-//    //使用prepare將這頁tableView cell資料傳到下一頁修改
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        //如果有取得上一頁的controller、這頁controller的tableView選中的row有資料，將這頁資料存給下一頁
-//        if let controller = segue.destination as? AddExpenseItemTableViewController,
-//           let row = self.monthlyCalendarTableView.indexPathForSelectedRow?.row{
-//
-//            controller.AddExpenseItemData = monthlyCalendarDataArray[row]
-//        }
-//    }
-    
+    //傳資料
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }
     
     
 }

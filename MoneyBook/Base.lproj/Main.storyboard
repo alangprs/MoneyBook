@@ -207,24 +207,22 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="輸入金額" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="coM-54-tea">
-                                                    <rect key="frame" x="296.33333333333331" y="12" width="73.666666666666686" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShA-R6-aAX">
+                                                    <rect key="frame" x="345" y="5" width="10.333333333333314" height="54"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ShA-R6-aAX" secondAttribute="bottom" constant="5" id="100-pB-9DI"/>
                                                 <constraint firstItem="vMG-jW-KQQ" firstAttribute="leading" secondItem="OiG-NC-USD" secondAttribute="leadingMargin" id="9gE-VN-lcA"/>
-                                                <constraint firstItem="coM-54-tea" firstAttribute="trailing" secondItem="OiG-NC-USD" secondAttribute="trailingMargin" id="BBE-iJ-O2z"/>
+                                                <constraint firstItem="ShA-R6-aAX" firstAttribute="top" secondItem="OiG-NC-USD" secondAttribute="top" constant="5" id="GM7-cA-Mk9"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="vMG-jW-KQQ" secondAttribute="bottom" constant="1" id="Lez-aC-9Dj"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="coM-54-tea" secondAttribute="bottom" constant="1" id="Q8q-Au-4pR"/>
+                                                <constraint firstAttribute="trailing" secondItem="ShA-R6-aAX" secondAttribute="trailing" constant="34.670000000000002" id="ebr-5U-vdH"/>
                                                 <constraint firstItem="vMG-jW-KQQ" firstAttribute="top" secondItem="OiG-NC-USD" secondAttribute="topMargin" constant="1" id="pcJ-V0-1zP"/>
-                                                <constraint firstItem="coM-54-tea" firstAttribute="top" secondItem="OiG-NC-USD" secondAttribute="topMargin" constant="1" id="ucU-Pf-bhz"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="7vp-to-lny" kind="presentation" id="6X3-hY-EEs"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="wmd-bP-cXV">
                                         <rect key="frame" x="0.0" y="152.33333396911621" width="390" height="64"/>
@@ -394,10 +392,11 @@
                         <outlet property="categoryImage" destination="nQ4-yH-HXL" id="nwv-Rf-nel"/>
                         <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
-                        <outlet property="moneyNumber" destination="coM-54-tea" id="xh1-77-q1W"/>
+                        <outlet property="moneyNumber" destination="ShA-R6-aAX" id="HnP-an-ecL"/>
                         <outlet property="receiptImage" destination="ZrC-yO-eFm" id="mSv-Sy-SYa"/>
                         <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>
                         <segue destination="mPO-Un-mjh" kind="show" identifier="AccountTableViewController" id="xCe-LH-bTX"/>
+                        <segue destination="7vp-to-lny" kind="presentation" identifier="ComputerViewController" id="hwA-oc-80D"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzu-BV-iSk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -911,7 +910,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vmF-O3-BTQ"/>
+        <segue reference="eud-Y2-TWj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bounsIcon" width="96" height="96"/>

@@ -11,7 +11,7 @@ class AddExpenseItemTableViewController: UITableViewController{
     //日期顯示
     @IBOutlet weak var datePickerTextField: UITextField!
     //輸入金額
-    @IBOutlet weak var moneyNumber: UITextField!
+    @IBOutlet weak var moneyNumber: UILabel!
     //收入、支出 選擇
     @IBOutlet weak var SelectTypeSegmented: UISegmentedControl!
     //顯示類別
@@ -46,6 +46,7 @@ class AddExpenseItemTableViewController: UITableViewController{
         //初始化 帳戶
         accountLabel.text = Expense.accounts.first?.rawValue
         accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
+       
     }
     
     //定義tableview，選到的cell要做的事情
@@ -61,7 +62,7 @@ class AddExpenseItemTableViewController: UITableViewController{
             case .date: //日期
                 return
             case .amount://金額
-                return
+                performSegue(withIdentifier: "\(ComputerViewController.self)", sender: nil)
             case .category: //類別
                 performSegue(withIdentifier: "\(SelectTypeCollectionViewController.self)", sender: nil)
             case .account: //帳戶類別
@@ -122,7 +123,7 @@ class AddExpenseItemTableViewController: UITableViewController{
         accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
     }
     
-    //傳資料到SelectTypeCollectionViewController
+    //傳資料到選擇類別
     @IBSegueAction func goSelectType(_ coder: NSCoder) -> SelectTypeCollectionViewController? {
         return SelectTypeCollectionViewController(coder: coder, isExpenseCategory: isExpenseCategory ?? true)
     }
@@ -179,6 +180,11 @@ extension AddExpenseItemTableViewController:UIImagePickerControllerDelegate & UI
             self.trunOnPhone()
         }
         controller.addAction(phoneAction)
+        
+        //取消按鈕
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        controller.addAction(cancelAction)
         
         present(controller, animated: true, completion: nil)
     }
