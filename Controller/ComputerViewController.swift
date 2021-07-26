@@ -30,10 +30,9 @@ class ComputerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-    
 
     //取得數字
     @IBAction func calculate(_ sender: UIButton) {
@@ -58,8 +57,8 @@ class ComputerViewController: UIViewController {
             //存入目前畫面上數字
             numberOnScreen = Int(sumLabel.text!) ?? 0
         }
-        
     }
+    
     //加
     @IBAction func add(_ sender: UIButton) {
         sumLabel.text = "+"
@@ -128,7 +127,7 @@ class ComputerViewController: UIViewController {
             sum = Int(sumLabel.text!)!
         }
     }
-   
     
-
+    
+    
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddExpenseItemTableViewController: UITableViewController {
+class AddExpenseItemTableViewController: UITableViewController{
     //日期顯示
     @IBOutlet weak var datePickerTextField: UITextField!
     //輸入金額
@@ -23,14 +23,19 @@ class AddExpenseItemTableViewController: UITableViewController {
     //金額圖片
     @IBOutlet weak var amountImage: UIImageView!
     @IBOutlet weak var amountTextField: UITextField!
+    //收據圖片
+    @IBOutlet weak var receiptImage: UIImageView!
+    
     
     let datePicker = UIDatePicker()
     var isExpenseCategory:Bool? //控制支出、收入
+    let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatepicker()//初始化datePicker
         upDataUI()
+        
         
     }
     //載入UI畫面
@@ -67,7 +72,7 @@ class AddExpenseItemTableViewController: UITableViewController {
             let additionalDatas = AdditionalDatas.allCases[indexPath.row]
             switch additionalDatas {
             case .receiptPhoto: //收據照片
-                return
+                selectPhotoController()
             case .memo://備註
                 return
             }
@@ -124,7 +129,7 @@ class AddExpenseItemTableViewController: UITableViewController {
     
     //讓 選擇類別、選擇帳戶、填寫金額 回來,再取得選取到的row資料後，顯示在這頁
     @IBAction func unwindToAddExpenseItemTableViewController(_ unwindSegue: UIStoryboardSegue) {
-            //如果是從選擇類別回的資料 設定支出、收入類別
+        //如果是從選擇類別回的資料 設定支出、收入類別
         if let categorySource = unwindSegue.source as? SelectTypeCollectionViewController,
            let row = categorySource.row{
             //更新選到的 支出類別
@@ -153,77 +158,118 @@ class AddExpenseItemTableViewController: UITableViewController {
                  let sum = sumNumber.sum{
             moneyNumber.text = "\(sum)"
         }
-       
+        
+    }
+}
+
+//Delegate 設定ImagePickerController
+extension AddExpenseItemTableViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    //彈跳出 是要選照片 還是拍照選項
+    func selectPhotoController(){
+        
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        //相機
+        let cameraAction = UIAlertAction(title: "相機", style: .default) { _ in
+            self.turnOnTheCamera() //開啟相機
+        }
+        controller.addAction(cameraAction)
+        
+        //相簿
+        let phoneAction = UIAlertAction(title: "相簿", style: .default) { _ in
+            self.trunOnPhone()
+        }
+        controller.addAction(phoneAction)
+        
+        present(controller, animated: true, completion: nil)
+    }
+    //開啟相簿功能
+    func trunOnPhone(){
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    //開啟相機功能
+    func turnOnTheCamera(){
+        imagePickerController.sourceType = .camera
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    //讀選到的圖片
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        //讀取info選到的照片
+        receiptImage.image = info[.originalImage] as? UIImage
+        //點選完後回原本頁面
+        dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    // MARK: - Table view data source
-    
-    //    override func numberOfSections(in tableView: UITableView) -> Int {
-    //        // #warning Incomplete implementation, return the number of sections
-    //        return 0
-    //    }
-    //
-    //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        // #warning Incomplete implementation, return the number of rows
-    //        return 0
-    //    }
-    
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
+
+
+
+// MARK: - Table view data source
+
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
+
+/*
+ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+ let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+ 
+ // Configure the cell...
+ 
+ return cell
+ }
+ */
+
+/*
+ // Override to support conditional editing of the table view.
+ override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+ // Return false if you do not want the specified item to be editable.
+ return true
+ }
+ */
+
+/*
+ // Override to support editing the table view.
+ override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+ if editingStyle == .delete {
+ // Delete the row from the data source
+ tableView.deleteRows(at: [indexPath], with: .fade)
+ } else if editingStyle == .insert {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
+
+/*
+ // Override to support rearranging the table view.
+ override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+ 
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+ // Return false if you do not want the item to be re-orderable.
+ return true
+ }
+ */
+
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ // Get the new view controller using segue.destination.
+ // Pass the selected object to the new view controller.
+ }
+ */
+

@@ -210,7 +210,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="輸入金額" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="coM-54-tea">
                                                     <rect key="frame" x="296.33333333333331" y="12" width="73.666666666666686" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -395,6 +395,7 @@
                         <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
                         <outlet property="moneyNumber" destination="coM-54-tea" id="xh1-77-q1W"/>
+                        <outlet property="receiptImage" destination="ZrC-yO-eFm" id="mSv-Sy-SYa"/>
                         <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>
                         <segue destination="mPO-Un-mjh" kind="show" identifier="AccountTableViewController" id="xCe-LH-bTX"/>
                     </connections>
@@ -402,7 +403,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzu-BV-iSk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7qx-av-L4a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="83"/>
+            <point key="canvasLocation" x="2092" y="83"/>
         </scene>
         <!--Computer View Controller-->
         <scene sceneID="WkA-zR-kyE">
