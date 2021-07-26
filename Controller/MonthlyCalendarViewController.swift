@@ -51,7 +51,9 @@ class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
     
     //傳資料
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        <#code#>
+        if let controller = segue.destination as? AddExpenseItemTableViewController{
+            controller.date = date
+        }
     }
     
     

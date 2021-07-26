@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class AddExpenseItemTableViewController: UITableViewController{
     //日期顯示
     @IBOutlet weak var datePickerTextField: UITextField!
@@ -26,10 +28,10 @@ class AddExpenseItemTableViewController: UITableViewController{
     //收據圖片
     @IBOutlet weak var receiptImage: UIImageView!
     
-    
     let datePicker = UIDatePicker()
     var isExpenseCategory:Bool? //控制支出、收入
     let imagePickerController = UIImagePickerController()
+    var date:Date? //存日期
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +48,8 @@ class AddExpenseItemTableViewController: UITableViewController{
         //初始化 帳戶
         accountLabel.text = Expense.accounts.first?.rawValue
         accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
-       
+       //初始化日期
+        pressed()
     }
     
     //定義tableview，選到的cell要做的事情
@@ -68,7 +71,7 @@ class AddExpenseItemTableViewController: UITableViewController{
             case .account: //帳戶類別
                 performSegue(withIdentifier: "\(AccountTableViewController.self)", sender: nil)
             }
-        //選填資料 (功能還未寫完)
+        //選填資料
         case .additionalDatas:
             let additionalDatas = AdditionalDatas.allCases[indexPath.row]
             switch additionalDatas {
@@ -94,7 +97,15 @@ class AddExpenseItemTableViewController: UITableViewController{
         let dateFormatter = DateFormatter() //日期樣式設定
         dateFormatter.dateStyle = .medium //文字顯示：中
         dateFormatter.dateFormat = "yyyy年MM月dd日" //日期顯示方式 年、月、日
-        self.datePickerTextField.text = dateFormatter.string(from: datePicker.date)//設定textField顯示點選到的日期
+       
+        
+        if date != nil{
+            datePicker.date = date!
+            self.datePickerTextField.text = dateFormatter.string(from: datePicker.date)
+        }else{
+            self.datePickerTextField.text = dateFormatter.string(from: date!)
+        }
+        //關閉月曆
         self.view.endEditing(true)
     }
     //設定datePicker
