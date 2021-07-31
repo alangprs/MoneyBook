@@ -32,6 +32,7 @@ class AddExpenseItemTableViewController: UITableViewController{
     var isExpenseCategory:Bool? //控制支出、收入
     let imagePickerController = UIImagePickerController()
     var date:Date? //存日期
+    var archiveData:ArchiveData? //存檔資料
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,17 @@ class AddExpenseItemTableViewController: UITableViewController{
         accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
        //初始化日期
         pressed()
+    }
+    //準備回monthly的資料
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //判斷 回去終點(destination)是不是 Monthly
+        if let _ = segue.destination as? MonthlyCalendarViewController,
+           let appDelegate = UIApplication.shared.delegate as? AppDelegate{
+            //如果存檔沒資料 新增資料
+            if archiveData == nil{
+                
+            }
+        }
     }
     
     //定義tableview，選到的cell要做的事情
