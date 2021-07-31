@@ -14,6 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        //取得最底層controller 資料，將gelegate先給add，方便隨著頁面轉換傳遞
+        if let navigationControllers = window?.rootViewController as? UINavigationController,
+           let controller = navigationControllers.viewControllers[0] as? MonthlyCalendarViewController,
+           let appDelegate = UIApplication.shared.delegate as? AppDelegate
+           {
+            controller.container = appDelegate.persistentContainer
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

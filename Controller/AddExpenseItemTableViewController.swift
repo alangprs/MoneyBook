@@ -6,8 +6,7 @@
 //費用添加
 
 import UIKit
-
-
+import CoreData
 
 class AddExpenseItemTableViewController: UITableViewController{
     //日期顯示
@@ -24,15 +23,17 @@ class AddExpenseItemTableViewController: UITableViewController{
     @IBOutlet weak var accountImage: UIImageView!
     //金額圖片
     @IBOutlet weak var amountImage: UIImageView!
-    @IBOutlet weak var amountTextField: UITextField!
     //收據圖片
     @IBOutlet weak var receiptImage: UIImageView!
+    //備註
+    @IBOutlet weak var memoTextField: UITextField!
     
     let datePicker = UIDatePicker()
     var isExpenseCategory:Bool? //控制支出、收入
     let imagePickerController = UIImagePickerController()
     var date:Date? //存日期
     var archiveData:ArchiveData? //存檔資料
+    var container:NSPersistentContainer? //使用coredata存檔功能
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +53,49 @@ class AddExpenseItemTableViewController: UITableViewController{
        //初始化日期
         pressed()
     }
-    //準備回monthly的資料
+    //準備回monthly的資料。 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //判斷 回去終點(destination)是不是 Monthly
-        if let _ = segue.destination as? MonthlyCalendarViewController,
+        if let controller = segue.destination as? MonthlyCalendarViewController,
            let appDelegate = UIApplication.shared.delegate as? AppDelegate{
             //如果存檔沒資料 新增資料
             if archiveData == nil{
+                //取得自定義資料
+                let expenseItem = ArchiveData(context: appDelegate.persistentContainer.viewContext)
+                expenseItem.date = date
+                expenseItem.sum = Int32(moneyNumber.text!) ?? 0
+                expenseItem.category = categoryLabel.text
+                expenseItem.isExpense = isExpenseCategory ?? true
+                expenseItem.account = accountLabel.text
+                //照片
+                if let photo = receiptImage.image{
+                    expenseItem.photo = photo.pngData()
+                }
+                //備註
+                if let memo = memoTextField.text{
+                    expenseItem.memo = memo
+                }
+                //存檔
+                container?.saveContext()
+                print("新增資料",expenseItem)
                 
+            }else{ //如果有資料
+                archiveData?.date = date
+                archiveData?.sum = Int32(moneyNumber.text!) ?? 0
+                archiveData?.category = categoryLabel.text
+                archiveData?.isExpense = isExpenseCategory ?? true
+                archiveData?.account = accountLabel.text
+                //照片
+                if let photo = receiptImage.image?.pngData(){
+                    archiveData?.photo = photo
+                }
+                //備註
+                if let memo = archiveData?.memo{
+                    archiveData?.memo = memo
+                }
             }
+            //將存檔delegate傳回第一頁使用
+            controller.container = container
         }
     }
     

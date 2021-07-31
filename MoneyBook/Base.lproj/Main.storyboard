@@ -395,6 +395,7 @@
                         <outlet property="categoryImage" destination="nQ4-yH-HXL" id="nwv-Rf-nel"/>
                         <outlet property="categoryLabel" destination="QDm-Zv-zm2" id="189-Zz-r60"/>
                         <outlet property="datePickerTextField" destination="Nba-Qw-Eue" id="EgL-aL-V1f"/>
+                        <outlet property="memoTextField" destination="ki8-kX-OLD" id="X6A-zF-RdR"/>
                         <outlet property="moneyNumber" destination="ShA-R6-aAX" id="HnP-an-ecL"/>
                         <outlet property="receiptImage" destination="ZrC-yO-eFm" id="mSv-Sy-SYa"/>
                         <segue destination="CY7-Ue-iV0" kind="show" identifier="SelectTypeCollectionViewController" destinationCreationSelector="goSelectType:" id="EqR-jy-SP5"/>

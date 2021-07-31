@@ -6,6 +6,7 @@
 // 首頁 顯示月曆
 
 import UIKit
+import CoreData
 
 //要顯示的section數量
 class MonthlyCalendarViewController: UIViewController{
@@ -16,6 +17,8 @@ class MonthlyCalendarViewController: UIViewController{
     @IBOutlet weak var monthlyCalendarDatePicker: UIDatePicker!
     
     var date:Date?
+    var container:NSPersistentContainer? //使用coredata存檔功能
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +40,7 @@ class MonthlyCalendarViewController: UIViewController{
     
     //讓AddExpenseItemTableViewController 回來
     @IBAction func unwindToMonthlyCalendarViewController(_ unwindSegue: UIStoryboardSegue) {
-
+        
     }
     
     //傳資料去add頁面
@@ -48,14 +51,10 @@ class MonthlyCalendarViewController: UIViewController{
                let controller = navController.topViewController as? AddExpenseItemTableViewController{
                 //將選到的日期 傳給add頁面
                 controller.date = date
+                //將存檔功能傳下去
+                controller.container = container
             }
-            
-            
         }
-        //傳 要修改資料
-//        else if segue.identifier == "editData"{
-////
-////        }
     }
     
     
