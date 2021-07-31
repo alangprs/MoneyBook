@@ -8,16 +8,7 @@
 import UIKit
 
 //要顯示的section數量
-class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    //cell要顯示的內容 （從額外寫的cell讀資料）
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(MonthlyCalendarViewController.self)", for: indexPath) as? MonthlyCalendarCellTableViewCell else {return UITableViewCell()}
-        cell.MonthlyCellKindLabel.text = "喔"
-        return cell
-    }
+class MonthlyCalendarViewController: UIViewController{
     
     //下方tableview
     @IBOutlet weak var monthlyCalendarTableView: UITableView!
@@ -46,15 +37,38 @@ class MonthlyCalendarViewController: UIViewController,UITableViewDataSource {
     
     //讓AddExpenseItemTableViewController 回來
     @IBAction func unwindToMonthlyCalendarViewController(_ unwindSegue: UIStoryboardSegue) {
-        
+
     }
     
-    //傳資料
+    //傳資料去add頁面
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? AddExpenseItemTableViewController{
-            controller.date = date
+        //如果是按＋ 新增資料 取得UINavigationController的AddExpenseItemTableViewController內容
+        if segue.identifier == "addNewData"{
+            if let navController = segue.destination as? UINavigationController,
+               let controller = navController.topViewController as? AddExpenseItemTableViewController{
+                //將選到的日期 傳給add頁面
+                controller.date = date
+            }
+            
+            
         }
+        //傳 要修改資料
+//        else if segue.identifier == "editData"{
+////
+////        }
     }
     
     
+}
+//擴充tableview功能
+extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    //cell要顯示的內容 （從額外寫的cell讀資料）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(MonthlyCalendarViewController.self)", for: indexPath) as? MonthlyCalendarCellTableViewCell else {return UITableViewCell()}
+        
+        return cell
+    }
 }
