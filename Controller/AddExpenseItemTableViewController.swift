@@ -50,7 +50,7 @@ class AddExpenseItemTableViewController: UITableViewController{
         //初始化 帳戶
         accountLabel.text = Expense.accounts.first?.rawValue
         accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
-       //初始化日期
+        //初始化日期
         pressed()
     }
     //準備回monthly的資料。 
@@ -94,6 +94,7 @@ class AddExpenseItemTableViewController: UITableViewController{
                     archiveData?.memo = memo
                 }
             }
+           
             //將存檔delegate傳回第一頁使用
             controller.container = container
         }
@@ -144,7 +145,7 @@ class AddExpenseItemTableViewController: UITableViewController{
         let dateFormatter = DateFormatter() //日期樣式設定
         dateFormatter.dateStyle = .medium //文字顯示：中
         dateFormatter.dateFormat = "yyyy年MM月dd日" //日期顯示方式 年、月、日
-       
+        
         
         if date != nil{
             datePicker.date = date!
