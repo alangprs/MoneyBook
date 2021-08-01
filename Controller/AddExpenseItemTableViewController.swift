@@ -56,6 +56,12 @@ class AddExpenseItemTableViewController: UITableViewController{
                 receiptImage.image = UIImage(data: archiveData.photo!)
                 print("add畫面 載入圖片")
             }
+            //判斷收入 ＯＲ 支出
+            if archiveData.isExpense == false{
+                SelectTypeSegmented.selectedSegmentIndex = 1
+            }else{
+                SelectTypeSegmented.selectedSegmentIndex = 0
+            }
             
             
         }else{ //新增資料
