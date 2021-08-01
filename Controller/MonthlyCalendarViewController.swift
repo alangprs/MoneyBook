@@ -28,7 +28,11 @@ class MonthlyCalendarViewController: UIViewController{
     func upDataUI(){
         date = monthlyCalendarDatePicker.date
         getArchiveData() //讀取存檔
-        
+        if let photo = archiveDataArray[0].photo{
+            print("有存照片")
+        }else{
+            print("沒存照片")
+        }
     }
     
     //選擇日期
