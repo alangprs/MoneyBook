@@ -37,19 +37,26 @@ class AddExpenseItemTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDatepicker()//初始化datePicker
+        createDatepicker()//初始化datePicker功能
         upDataUI()
-        
-        
+
     }
     //載入UI畫面
     func upDataUI(){
-        //初始化 類別
-        categoryLabel.text = Expense.expenseCategories.first?.rawValue
-        categoryImage.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
-        //初始化 帳戶
-        accountLabel.text = Expense.accounts.first?.rawValue
-        accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
+        if let archiveData = archiveData{ //修改資料
+            date = archiveData.date
+            moneyNumber.text = "\(archiveData.sum)"
+            categoryLabel.text = archiveData.category
+            accountLabel.text = archiveData.account
+            
+        }else{ //新增資料
+            //初始化 類別
+            categoryLabel.text = Expense.expenseCategories.first?.rawValue
+            categoryImage.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
+            //初始化 帳戶
+            accountLabel.text = Expense.accounts.first?.rawValue
+            accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
+        }
         //初始化日期
         pressed()
     }

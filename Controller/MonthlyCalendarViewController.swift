@@ -47,18 +47,18 @@ class MonthlyCalendarViewController: UIViewController{
         //有取得add頁面填入的資料
         if let controller = unwindSegue.source as? AddExpenseItemTableViewController,
            let expenseItem = controller.archiveData{
-           
+            
             let context = controller.container?.viewContext
             if monthlyCalendarTableView.indexPathsForSelectedRows != nil{
                 print("修改資料")
             }else{
-                
+                //將回來的資料 加回這頁array
+                archiveDataArray.append(controller.archiveData!)
                 context?.insert(expenseItem)
                 print("新增資料")
             }
-            //將回來的資料 加回這頁array
-            archiveDataArray.append(controller.archiveData!)
             monthlyCalendarTableView.reloadData()
+            print("確認資料變化",archiveDataArray)
         }
     }
     //讀存檔資料
@@ -71,14 +71,29 @@ class MonthlyCalendarViewController: UIViewController{
         }
     }
     
-    //傳資料去add頁面
+    //準備資料去 add頁面 判斷是 新增 or 修改
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //如果是按＋ 新增資料 取得UINavigationController的AddExpenseItemTableViewController內容
         if segue.identifier == "addNewData"{
+            
             if let navController = segue.destination as? UINavigationController,
                let controller = navController.topViewController as? AddExpenseItemTableViewController{
                 //將選到的日期 傳給add頁面
                 controller.date = date
+                //將存檔功能傳下去
+                controller.container = container
+            }
+            
+        }else if segue.identifier == "esitData"{ //傳修改資料
+            //取得 navController的add頁面，有取得選到的row
+            if let navController = segue.destination as? UINavigationController,
+               let controller = navController.topViewController as? AddExpenseItemTableViewController,
+               let row = monthlyCalendarTableView.indexPathForSelectedRow?.row{
+                
+                //將選到的日期 傳給add頁面
+                controller.date = date
+                //選到的資料傳下去
+                controller.archiveData = archiveDataArray[row]
                 //將存檔功能傳下去
                 controller.container = container
             }
@@ -103,7 +118,7 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
         cell.payIngKindLabel.text = row.account
         cell.MonthlyCellSumMoneyLabel.text = "\(row.sum)"
         
-      
+        
         return cell
     }
     //刪除選到的cell

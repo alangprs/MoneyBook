@@ -89,6 +89,7 @@
                                             <outlet property="MonthlyCellKindLabel" destination="wi2-ZE-aG0" id="0HC-45-ZA2"/>
                                             <outlet property="MonthlyCellSumMoneyLabel" destination="6M0-4F-dXv" id="tC0-zN-vRd"/>
                                             <outlet property="payIngKindLabel" destination="7Sl-N8-Wke" id="0Gb-0t-SA0"/>
+                                            <segue destination="bms-rD-FSb" kind="presentation" identifier="esitData" id="TN9-oe-ry3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -932,6 +933,9 @@
             <point key="canvasLocation" x="1989" y="84"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TN9-oe-ry3"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bounsIcon" width="96" height="96"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
