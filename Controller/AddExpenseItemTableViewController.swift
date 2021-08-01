@@ -47,7 +47,9 @@ class AddExpenseItemTableViewController: UITableViewController{
             date = archiveData.date
             moneyNumber.text = "\(archiveData.sum)"
             categoryLabel.text = archiveData.category
+            categoryImage.image = UIImage(named: archiveData.category!)
             accountLabel.text = archiveData.account
+            accountImage.image = UIImage(named: archiveData.account!)
             
         }else{ //新增資料
             //初始化 類別
@@ -228,6 +230,13 @@ class AddExpenseItemTableViewController: UITableViewController{
         }
         
     }
+    
+    //點Ｘ 回monthly頁面
+    @IBAction func goBackMonthly(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+        print("回上一頁")
+    }
+    
 }
 
 //Delegate 設定ImagePickerController

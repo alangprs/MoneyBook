@@ -373,7 +373,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="multiply" catalog="system" id="hrI-py-YAR">
                             <color key="tintColor" name="AccentColor"/>
                             <connections>
-                                <segue destination="7qx-av-L4a" kind="unwind" unwindAction="unwindToMonthlyCalendarViewController:" id="Rsq-xU-8VP"/>
+                                <action selector="goBackMonthly:" destination="gge-mM-SOH" id="bDE-LJ-i2x"/>
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="zNa-vJ-OT1">
