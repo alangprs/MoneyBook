@@ -9,8 +9,8 @@ import UIKit
 import CoreData
 
 //要顯示的section數量
-class MonthlyCalendarViewController: UIViewController{
-    
+class MonthlyCalendarViewController: UIViewController,NSFetchedResultsControllerDelegate{
+   
     //下方tableview
     @IBOutlet weak var monthlyCalendarTableView: UITableView!
     //日期
@@ -18,6 +18,7 @@ class MonthlyCalendarViewController: UIViewController{
     
     var date:Date?
     var container:NSPersistentContainer? //使用coredata存檔功能
+    var fetchResultController: NSFetchedResultsController<ArchiveData>! //資料監控
     var archiveDataArray = [ArchiveData]() //存檔資料
     
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class MonthlyCalendarViewController: UIViewController{
     func upDataUI(){
         date = monthlyCalendarDatePicker.date
         getArchiveData() //讀取存檔
+
     }
     
     //選擇日期
@@ -59,12 +61,28 @@ class MonthlyCalendarViewController: UIViewController{
         }
     }
     //讀存檔資料
-    func getArchiveData(){
-        let context = container?.viewContext
-        do {
-            archiveDataArray = try context?.fetch(ArchiveData.fetchRequest()) as! [ArchiveData]
-        } catch {
-            print("讀取資料失敗")
+    func getArchiveData(){ //恢復點
+//        let context = container?.viewContext
+//        do {
+//            archiveDataArray = try context?.fetch(ArchiveData.fetchRequest()) as! [ArchiveData]
+//        } catch {
+//            print("讀取資料失敗")
+//        }
+        let fetchRequest: NSFetchRequest<ArchiveData> = ArchiveData.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchResultController.delegate = self
+            do {
+                try fetchResultController.performFetch()
+                if let fetchedObjects = fetchResultController.fetchedObjects{
+                    archiveDataArray = fetchedObjects
+                }
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -97,6 +115,32 @@ class MonthlyCalendarViewController: UIViewController{
         }
     }
     
+    //遵從協定的方法來收尋core data資料
+    func controllerWillChangeContent(_ controller:
+    NSFetchedResultsController<NSFetchRequestResult>) {
+        monthlyCalendarTableView.beginUpdates()
+    }
+    //core data 資料監控
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath{
+                monthlyCalendarTableView.insertRows(at: [newIndexPath], with: .automatic)
+                print("core data 新增")
+            }
+        case .update:
+            if let fetchObjects = controller.fetchedObjects{
+                archiveDataArray = fetchObjects as! [ArchiveData]
+            }
+
+        default:
+            monthlyCalendarTableView.reloadData()
+        }
+    }
+    //結束更新
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        monthlyCalendarTableView.endUpdates()
+    }
     
 }
 //擴充tableview功能
@@ -131,4 +175,6 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
         //刪除畫面上選到的cell
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    
 }
