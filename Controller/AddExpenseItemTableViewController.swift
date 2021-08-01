@@ -75,8 +75,7 @@ class AddExpenseItemTableViewController: UITableViewController{
                 if let memo = memoTextField.text{
                     expenseItem.memo = memo
                 }
-                //存檔
-                container?.saveContext()
+                archiveData = expenseItem
                 print("新增資料",expenseItem)
                 
             }else{ //如果有資料
@@ -93,8 +92,10 @@ class AddExpenseItemTableViewController: UITableViewController{
                 if let memo = archiveData?.memo{
                     archiveData?.memo = memo
                 }
+                print("修改資料")
             }
-           
+            //存檔
+            container?.saveContext()
             //將存檔delegate傳回第一頁使用
             controller.container = container
         }

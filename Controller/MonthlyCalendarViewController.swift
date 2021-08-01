@@ -52,10 +52,12 @@ class MonthlyCalendarViewController: UIViewController{
             if monthlyCalendarTableView.indexPathsForSelectedRows != nil{
                 print("修改資料")
             }else{
+                
                 context?.insert(expenseItem)
                 print("新增資料")
             }
-//            container?.saveContext()
+            //將回來的資料 加回這頁array
+            archiveDataArray.append(controller.archiveData!)
             monthlyCalendarTableView.reloadData()
         }
     }
