@@ -50,6 +50,7 @@ class AddExpenseItemTableViewController: UITableViewController{
             categoryImage.image = UIImage(named: archiveData.category!)
             accountLabel.text = archiveData.account
             accountImage.image = UIImage(named: archiveData.account!)
+            memoTextField.text = archiveData.memo
             
         }else{ //新增資料
             //初始化 類別
@@ -83,6 +84,7 @@ class AddExpenseItemTableViewController: UITableViewController{
                 //備註
                 if let memo = memoTextField.text{
                     expenseItem.memo = memo
+                    print("讀備註",memo)
                 }
                 archiveData = expenseItem
                 print("新增資料",expenseItem)
@@ -93,13 +95,10 @@ class AddExpenseItemTableViewController: UITableViewController{
                 archiveData?.category = categoryLabel.text
                 archiveData?.isExpense = isExpenseCategory ?? true
                 archiveData?.account = accountLabel.text
+                archiveData?.memo = memoTextField.text
                 //照片
                 if let photo = receiptImage.image?.pngData(){
                     archiveData?.photo = photo
-                }
-                //備註
-                if let memo = archiveData?.memo{
-                    archiveData?.memo = memo
                 }
                 print("修改資料")
             }

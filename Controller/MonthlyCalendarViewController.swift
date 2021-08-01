@@ -19,13 +19,11 @@ class MonthlyCalendarViewController: UIViewController{
     var date:Date?
     var container:NSPersistentContainer? //使用coredata存檔功能
     var archiveDataArray = [ArchiveData]() //存檔資料
-    var archiveData:ArchiveData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         upDataUI()
-        
     }
     func upDataUI(){
         date = monthlyCalendarDatePicker.date
@@ -50,15 +48,15 @@ class MonthlyCalendarViewController: UIViewController{
             
             let context = controller.container?.viewContext
             if monthlyCalendarTableView.indexPathsForSelectedRows != nil{
-                print("修改資料")
+                print("修改資料 回來")
             }else{
                 //將回來的資料 加回這頁array
                 archiveDataArray.append(controller.archiveData!)
                 context?.insert(expenseItem)
-                print("新增資料")
+                print("新增資料 回來")
             }
+            //刷新頁面
             monthlyCalendarTableView.reloadData()
-            print("確認資料變化",archiveDataArray)
         }
     }
     //讀存檔資料
