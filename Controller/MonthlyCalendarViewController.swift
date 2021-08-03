@@ -55,6 +55,8 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 context?.insert(expenseItem)
                 print("新增資料 回來")
             }
+            //存檔
+            container.saveContext()
             //刷新頁面
             monthlyCalendarTableView.reloadData()
         }

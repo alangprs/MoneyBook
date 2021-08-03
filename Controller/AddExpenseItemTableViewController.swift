@@ -78,7 +78,7 @@ class AddExpenseItemTableViewController: UITableViewController{
     //準備回monthly的資料。 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //判斷 回去終點(destination)是不是 Monthly
-        if let controller = segue.destination as? MonthlyCalendarViewController,
+        if let _ = segue.destination as? MonthlyCalendarViewController,
            let appDelegate = UIApplication.shared.delegate as? AppDelegate{
             //如果存檔沒資料 新增資料
             if archiveData == nil{
@@ -115,10 +115,6 @@ class AddExpenseItemTableViewController: UITableViewController{
                 }
                 print("修改資料")
             }
-            //存檔
-            container?.saveContext()
-            //將存檔delegate傳回第一頁使用
-            controller.container = container
         }
     }
     
