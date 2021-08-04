@@ -31,19 +31,30 @@ class AddExpenseItemTableViewController: UITableViewController{
     let datePicker = UIDatePicker()
     var isExpenseCategory:Bool? //控制支出、收入
     let imagePickerController = UIImagePickerController()
-    var date:Date? //存日期
+    var date:String? //存日期
+    var selectDatePicker:Date?
     var archiveData:ArchiveData? //存檔資料
     var container:NSPersistentContainer? //使用coredata存檔功能
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDatepicker()//初始化datePicker功能
         upDataUI()
-
     }
     //載入UI畫面
     func upDataUI(){
+        createDatepicker()//初始化datePicker功能
+        //初始化日期
+        if let selectDatePicker = selectDatePicker{
+            datePickerTextField.text = dateFormatter(date: selectDatePicker)
+            datePicker.date = selectDatePicker
+        }
+        
         if let archiveData = archiveData{ //修改資料
+            datePickerTextField.text = date
+            if let date = archiveData.date{
+                datePickerTextField.text = date
+                
+            }
             date = archiveData.date
             moneyNumber.text = "\(archiveData.sum)"
             categoryLabel.text = archiveData.category
@@ -72,37 +83,37 @@ class AddExpenseItemTableViewController: UITableViewController{
             accountLabel.text = Expense.accounts.first?.rawValue
             accountImage.image = UIImage(named: "\(Expense.accounts.first!.rawValue)")
         }
-        //初始化日期
-        pressed()
+        
     }
     //準備回monthly的資料。 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //判斷 回去終點(destination)是不是 Monthly
-        if let _ = segue.destination as? MonthlyCalendarViewController,
+        if let controller = segue.destination as? MonthlyCalendarViewController,
            let appDelegate = UIApplication.shared.delegate as? AppDelegate{
             //如果存檔沒資料 新增資料
             if archiveData == nil{
                 //取得自定義資料
                 let expenseItem = ArchiveData(context: appDelegate.persistentContainer.viewContext)
-                expenseItem.date = date
+                expenseItem.date = datePickerTextField.text
                 expenseItem.sum = Int32(moneyNumber.text!) ?? 0
                 expenseItem.category = categoryLabel.text
                 expenseItem.isExpense = isExpenseCategory ?? true
                 expenseItem.account = accountLabel.text
+                //將date日期傳回去
+                controller.selectDatePicker = datePicker.date
                 //照片
                 if let photo = receiptImage.image{
                     expenseItem.photo = photo.pngData()
-                    print("新增照片")
+                    print("add新增照片")
                 }
                 //備註
                 if let memo = memoTextField.text{
                     expenseItem.memo = memo
                 }
                 archiveData = expenseItem
-                print("新增資料",expenseItem)
                 
             }else{ //如果有資料
-                archiveData?.date = date
+                archiveData?.date = dateFormatter(date: datePicker.date)
                 archiveData?.sum = Int32(moneyNumber.text!) ?? 0
                 archiveData?.category = categoryLabel.text
                 archiveData?.isExpense = isExpenseCategory ?? true
@@ -111,9 +122,9 @@ class AddExpenseItemTableViewController: UITableViewController{
                 //照片
                 if let photo = receiptImage.image?.pngData(){
                     archiveData?.photo = photo
-                    print("有收據照片")
+                    print("add有收據照片")
                 }
-                print("修改資料")
+                print("add修改資料")
             }
         }
     }
@@ -160,19 +171,16 @@ class AddExpenseItemTableViewController: UITableViewController{
     }
     //執行按下之後動作
     @objc func pressed(){
+        datePickerTextField.text = dateFormatter(date: datePicker.date)
+        //關閉月曆
+        self.view.endEditing(true)
+        
+    }
+    func dateFormatter(date:Date) -> String {
         let dateFormatter = DateFormatter() //日期樣式設定
         dateFormatter.dateStyle = .medium //文字顯示：中
         dateFormatter.dateFormat = "yyyy年MM月dd日" //日期顯示方式 年、月、日
-        
-        
-        if date != nil{
-            datePicker.date = date!
-            self.datePickerTextField.text = dateFormatter.string(from: datePicker.date)
-        }else{
-            self.datePickerTextField.text = dateFormatter.string(from: date!)
-        }
-        //關閉月曆
-        self.view.endEditing(true)
+        return dateFormatter.string(from: date)
     }
     //設定datePicker
     func createDatepicker(){

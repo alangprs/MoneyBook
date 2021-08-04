@@ -16,28 +16,71 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
     //日期
     @IBOutlet weak var monthlyCalendarDatePicker: UIDatePicker!
     
-    var date:Date?
+    var date:String?
+    var selectDatePicker:Date?
     var container:NSPersistentContainer! //使用coredata存檔功能
-    var fetchResultController: NSFetchedResultsController<ArchiveData>! //資料監控
-    var archiveDataArray = [ArchiveData]() //存檔資料
+    var fetchResultController: NSFetchedResultsController<ArchiveData>! //資料監控控制器
+    var archiveDataArray = [ArchiveData]() //放存檔資料
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         upDataUI()
+        fetchResultController.delegate = self
     }
     func upDataUI(){
-        date = monthlyCalendarDatePicker.date
-        getArchiveData() //讀取存檔
+        date = "\(monthlyCalendarDatePicker.date)"
+        getArchiveData(date: dateFormatter(date: Date())) //讀取存檔
         
+    }
+    //讀存檔資料
+    func getArchiveData(date:String){
+        archiveDataArray.removeAll()
+        // 從ArchiveData取得NSFetchRequest
+        let fetchRequest: NSFetchRequest<ArchiveData> = ArchiveData.fetchRequest()
+        // 讀取出來的物件依照日期降序排列
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        //取得資料條件
+        fetchRequest.predicate = NSPredicate(format: "date == %@", dateFormatter(date: monthlyCalendarDatePicker.date))
+        // 透過AppDelegate取得資料
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            // 建立ManagedObjectContext
+            let context = appDelegate.persistentContainer.viewContext
+            // 初始化fetchResultController，使用日期作為sectionNameKeyPath
+            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "date", cacheName: nil)
+            // 指定委派為自己來監控資料變化
+            fetchResultController.delegate = self
+            
+            do {
+                // 呼叫performFetch()執行讀取結果
+                try fetchResultController.performFetch()
+                
+                // 存取fetchedObjects屬性取得archiveDataArray物件
+                if let fetchedObjects = fetchResultController.fetchedObjects {
+                    
+                    archiveDataArray = fetchedObjects
+                    print("讀資料",archiveDataArray)
+                }
+            } catch {
+                
+                print("讀取失敗的錯誤訊息：\(error)")
+            }
+        }
+
     }
     
     //選擇日期
     @IBAction func selectDate(_ sender: UIDatePicker) {
+        //點選到的日期
+        getArchiveData(date: dateFormatter(date: sender.date))
+        date = "\(sender.date)"
+        monthlyCalendarTableView.reloadData()
+    }
+    func dateFormatter(date:Date)->String {
         let dateValue = DateFormatter()
         dateValue.dateFormat = "yyyy年MM月dd日"
-        //存點選到的日期
-        date = monthlyCalendarDatePicker.date
+        let dateStr = dateValue.string(from: date)
+        return dateStr
     }
     
     //讓AddExpenseItemTableViewController 回來
@@ -51,7 +94,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 print("修改資料 回來")
             }else{
                 //將回來的資料 加回這頁array
-                archiveDataArray.append(controller.archiveData!)
+//                archiveDataArray.append(controller.archiveData!)
                 context?.insert(expenseItem)
                 print("新增資料 回來")
             }
@@ -60,16 +103,6 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
             //刷新頁面
             monthlyCalendarTableView.reloadData()
         }
-    }
-    //讀存檔資料
-    func getArchiveData(){
-        let context = container?.viewContext
-        do {
-            archiveDataArray = try context?.fetch(ArchiveData.fetchRequest()) as! [ArchiveData]
-        } catch {
-            print("讀取資料失敗")
-        }
-        
     }
     
     //準備資料去 add頁面 判斷是 新增 or 修改
@@ -81,8 +114,9 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                let controller = navController.topViewController as? AddExpenseItemTableViewController{
                 //將選到的日期 傳給add頁面
                 controller.date = date
+                controller.selectDatePicker = monthlyCalendarDatePicker.date
                 //將存檔功能傳下去
-                controller.container = container
+//                controller.container = container
             }
             
         }else if segue.identifier == "esitData"{ //傳修改資料
@@ -96,9 +130,52 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 //選到的資料傳下去
                 controller.archiveData = archiveDataArray[row]
                 //將存檔功能傳下去
-                controller.container = container
+//                controller.container = container
             }
         }
+    }
+    // 準備開始處理內容更變時會被呼叫
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        monthlyCalendarTableView.beginUpdates()
+    }
+    // 有任何的內容更變會自動被呼叫：Object
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                monthlyCalendarTableView.insertRows(at: [newIndexPath], with: .fade)
+                
+            }
+            
+        case .delete:
+            if let indexPath = indexPath {
+                monthlyCalendarTableView.deleteRows(at: [indexPath], with: .fade)
+                
+            }
+            
+        case .update:
+            if let indexPath = indexPath {
+                monthlyCalendarTableView.reloadRows(at: [indexPath], with: .fade)
+            }
+            
+        default:
+            monthlyCalendarTableView.reloadData()
+        }
+        // 讀取結果控制器更變後同步records的資料
+        if let fetchedObjects = controller.fetchedObjects {
+            
+            archiveDataArray = (fetchedObjects as! [ArchiveData])
+            print("最新的資料：\(archiveDataArray)")
+        }
+        monthlyCalendarTableView.reloadData()
+    }
+    // 完成內容更變時會被呼叫
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        monthlyCalendarTableView.endUpdates()
     }
 }
 //擴充tableview功能
@@ -110,6 +187,7 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(MonthlyCalendarViewController.self)", for: indexPath) as? MonthlyCalendarCellTableViewCell else {return UITableViewCell()}
         let row = archiveDataArray[indexPath.row]
+        
         //顯示種類
         cell.MonthlyCellKindLabel.text = row.category
         cell.MonthlyCellKindImage.image = UIImage(named: "\(String(describing: row.category!))")
@@ -120,16 +198,13 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
     }
     //刪除選到的cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let context = container?.viewContext
-        let row = archiveDataArray[indexPath.row]
-        //移除array裡面資料
-        archiveDataArray.remove(at: indexPath.row)
-        //刪除coredata裡面資料
-        context?.delete(row)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate{
+            let context = appDelegate.persistentContainer.viewContext
+            context.delete(self.fetchResultController.object(at: indexPath))
+        }
         //存檔
         container?.saveContext()
-        //刪除畫面上選到的cell
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+
     }
     
     
