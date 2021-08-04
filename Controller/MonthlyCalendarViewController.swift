@@ -59,14 +59,13 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 if let fetchedObjects = fetchResultController.fetchedObjects {
                     
                     archiveDataArray = fetchedObjects
-                    print("讀資料",archiveDataArray)
                 }
             } catch {
                 
                 print("讀取失敗的錯誤訊息：\(error)")
             }
         }
-
+        
     }
     
     //選擇日期
@@ -93,8 +92,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
             if monthlyCalendarTableView.indexPathsForSelectedRows != nil{
                 print("修改資料 回來")
             }else{
-                //將回來的資料 加回這頁array
-//                archiveDataArray.append(controller.archiveData!)
+                
                 context?.insert(expenseItem)
                 print("新增資料 回來")
             }
@@ -115,8 +113,6 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 //將選到的日期 傳給add頁面
                 controller.date = date
                 controller.selectDatePicker = monthlyCalendarDatePicker.date
-                //將存檔功能傳下去
-//                controller.container = container
             }
             
         }else if segue.identifier == "esitData"{ //傳修改資料
@@ -129,8 +125,6 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 controller.date = date
                 //選到的資料傳下去
                 controller.archiveData = archiveDataArray[row]
-                //將存檔功能傳下去
-//                controller.container = container
             }
         }
     }
@@ -153,7 +147,6 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
         case .delete:
             if let indexPath = indexPath {
                 monthlyCalendarTableView.deleteRows(at: [indexPath], with: .fade)
-                
             }
             
         case .update:
@@ -204,7 +197,7 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
         }
         //存檔
         container?.saveContext()
-
+        
     }
     
     

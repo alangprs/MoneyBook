@@ -184,10 +184,14 @@ class AddExpenseItemTableViewController: UITableViewController{
     }
     //設定datePicker
     func createDatepicker(){
-        datePicker.preferredDatePickerStyle = .wheels //設定日期選擇樣式
-        datePicker.datePickerMode = .date //只要日期
-        datePicker.locale = Locale(identifier: "zh_TW") //設置語言環境：台灣
-        datePickerTextField.inputView = datePicker //dateTextfield點下去時跳出datePicker選單
+        //設定日期選擇樣式
+        datePicker.preferredDatePickerStyle = .wheels
+        //只要日期
+        datePicker.datePickerMode = .date
+        //設置語言環境：台灣
+        datePicker.locale = Locale(identifier: "zh_TW")
+        //dateTextfield點下去時跳出datePicker選單
+        datePickerTextField.inputView = datePicker
         datePickerTextField.inputAccessoryView = createToolBar() //執行工具
     }
     //選擇類別
