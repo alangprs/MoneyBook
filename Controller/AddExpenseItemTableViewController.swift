@@ -51,6 +51,7 @@ class AddExpenseItemTableViewController: UITableViewController{
         
         if let archiveData = archiveData{ //修改資料
             datePickerTextField.text = date
+            
             if let date = archiveData.date{
                 datePickerTextField.text = date
                 
@@ -73,7 +74,6 @@ class AddExpenseItemTableViewController: UITableViewController{
             }else{
                 SelectTypeSegmented.selectedSegmentIndex = 0
             }
-            
             
         }else{ //新增資料
             //初始化 類別

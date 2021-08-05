@@ -15,12 +15,19 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
     @IBOutlet weak var monthlyCalendarTableView: UITableView!
     //日期
     @IBOutlet weak var monthlyCalendarDatePicker: UIDatePicker!
+    //總收入
+    @IBOutlet weak var incomeTotalLabel: UILabel!
+    //總支出
+    @IBOutlet weak var expensesTotalLabel: UILabel!
+    //月餘額
+    @IBOutlet weak var monthTotalLabel: UILabel!
+    
     
     var date:String?
     var selectDatePicker:Date?
     var container:NSPersistentContainer! //使用coredata存檔功能
     var fetchResultController: NSFetchedResultsController<ArchiveData>! //資料監控控制器
-    var archiveDataArray = [ArchiveData]() //放存檔資料
+    var archiveDataArray = [ArchiveData]() //放存檔指定日期資料
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +36,26 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
     }
     func upDataUI(){
         date = "\(monthlyCalendarDatePicker.date)"
-        getArchiveData(date: dateFormatter(date: Date())) //讀取存檔
+        getArchiveData(date: dateFormatter(date: Date())) 
+        getTitleLabel()
         
     }
-    //讀存檔資料
+    //顯示 tabelview 抬頭文字
+    func getTitleLabel(){
+        //取得當日收入金額
+        //reduce=將array裡數量逐一加總 0 = 起始值 $0 = 計算後值 $1 = 下一個從array放入的值
+        let expAmount = archiveDataArray.reduce(0, {if $1.isExpense==true {return $0+Int($1.sum)};return $0})
+        let incAmount = archiveDataArray.reduce(0, {if $1.isExpense==false {return $0+Int($1.sum) };return $0})
+        incomeTotalLabel.text = "收入 \n+\(incAmount)元"
+        expensesTotalLabel.textColor = UIColor.red
+        expensesTotalLabel.text = "支出 \n-\(expAmount)元"
+        
+        if incAmount - expAmount < incAmount{
+            monthTotalLabel.textColor = UIColor.red
+        }
+        monthTotalLabel.text = "盈餘 \n\(incAmount - expAmount)元"
+    }
+    //取得core data 選到日期的內容
     func getArchiveData(date:String){
         archiveDataArray.removeAll()
         // 從ArchiveData取得NSFetchRequest
@@ -40,7 +63,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
         // 讀取出來的物件依照日期降序排列
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        //取得資料條件
+        //取得資料條件 NSPredicate(過濾條件設定)
         fetchRequest.predicate = NSPredicate(format: "date == %@", dateFormatter(date: monthlyCalendarDatePicker.date))
         // 透過AppDelegate取得資料
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
@@ -59,6 +82,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 if let fetchedObjects = fetchResultController.fetchedObjects {
                     
                     archiveDataArray = fetchedObjects
+                    
                 }
             } catch {
                 
@@ -73,6 +97,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
         //點選到的日期
         getArchiveData(date: dateFormatter(date: sender.date))
         date = "\(sender.date)"
+        getTitleLabel()
         monthlyCalendarTableView.reloadData()
     }
     func dateFormatter(date:Date)->String {
@@ -98,6 +123,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
             }
             //存檔
             container.saveContext()
+            getTitleLabel()
             //刷新頁面
             monthlyCalendarTableView.reloadData()
         }
@@ -123,6 +149,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
                 
                 //將選到的日期 傳給add頁面
                 controller.date = date
+                controller.selectDatePicker = selectDatePicker
                 //選到的資料傳下去
                 controller.archiveData = archiveDataArray[row]
             }
@@ -186,7 +213,19 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
         cell.MonthlyCellKindImage.image = UIImage(named: "\(String(describing: row.category!))")
         //付款種類
         cell.payIngKindLabel.text = row.account
-        cell.MonthlyCellSumMoneyLabel.text = "\(row.sum)"
+        
+        //判斷收入、支出後 顯示不同顏色字體
+        if row.isExpense == true{ //支出
+            cell.MonthlyCellSumMoneyLabel.textColor = UIColor.red
+            cell.MonthlyCellSumMoneyLabel.text = "-\(row.sum)"
+            
+            
+        }else{
+            cell.MonthlyCellSumMoneyLabel.textColor = UIColor.black
+            cell.MonthlyCellSumMoneyLabel.text = "+\(row.sum)"
+            
+        }
+        
         return cell
     }
     //刪除選到的cell
