@@ -169,26 +169,22 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
         case .insert:
             if let newIndexPath = newIndexPath {
                 monthlyCalendarTableView.insertRows(at: [newIndexPath], with: .fade)
-                getTitleLabel()
-                print("有跑嗎")
             }
             
         case .delete:
             if let indexPath = indexPath {
                 monthlyCalendarTableView.deleteRows(at: [indexPath], with: .fade)
-                getTitleLabel()
             }
             
         case .update:
             if let indexPath = indexPath {
                 monthlyCalendarTableView.reloadRows(at: [indexPath], with: .fade)
-                getTitleLabel()
             }
             
         default:
             monthlyCalendarTableView.reloadData()
         }
-        // 讀取結果控制器更變後同步records的資料
+        // 讀取結果控制器更變後同步存檔的資料
         if let fetchedObjects = controller.fetchedObjects {
             
             archiveDataArray = (fetchedObjects as! [ArchiveData])
