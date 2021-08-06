@@ -28,6 +28,7 @@ enum ExpenseCategory:String,CaseIterable,Codable{
     case transportation = "交通"
     case education = "教育"
     case entertainment = "娛樂"
+    case other = "其他"
 }
 
 //收入類別
@@ -35,6 +36,7 @@ enum IncomeCategory:String,CaseIterable,Codable {
     case salary = "薪水"
     case bonus = "獎金"
     case investment = "投資"
+    case other = "其他"
 }
 
 //帳戶類別
@@ -42,5 +44,8 @@ enum Account:String, CaseIterable, Codable {
     case cash = "現金"
     case bank = "銀行"
     case creditCard = "信用卡"
+    case applePay = "ApplePay"
+    case jKoPay = "街口支付"
+    case linePay = "LinePay"
 }
 

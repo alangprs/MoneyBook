@@ -22,7 +22,6 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
     //月餘額
     @IBOutlet weak var monthTotalLabel: UILabel!
     
-    
     var date:String?
     var selectDatePicker:Date?
     var container:NSPersistentContainer! //使用coredata存檔功能
@@ -54,6 +53,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
             monthTotalLabel.textColor = UIColor.red
         }
         monthTotalLabel.text = "盈餘 \n\(incAmount - expAmount)元"
+        
     }
     //取得core data 選到日期的內容
     func getArchiveData(date:String){
@@ -126,6 +126,7 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
             getTitleLabel()
             //刷新頁面
             monthlyCalendarTableView.reloadData()
+            
         }
     }
     
@@ -168,17 +169,20 @@ class MonthlyCalendarViewController: UIViewController,NSFetchedResultsController
         case .insert:
             if let newIndexPath = newIndexPath {
                 monthlyCalendarTableView.insertRows(at: [newIndexPath], with: .fade)
-                
+                getTitleLabel()
+                print("有跑嗎")
             }
             
         case .delete:
             if let indexPath = indexPath {
                 monthlyCalendarTableView.deleteRows(at: [indexPath], with: .fade)
+                getTitleLabel()
             }
             
         case .update:
             if let indexPath = indexPath {
                 monthlyCalendarTableView.reloadRows(at: [indexPath], with: .fade)
+                getTitleLabel()
             }
             
         default:
@@ -234,9 +238,11 @@ extension MonthlyCalendarViewController:UITableViewDelegate,UITableViewDataSourc
             let context = appDelegate.persistentContainer.viewContext
             context.delete(self.fetchResultController.object(at: indexPath))
         }
+        getTitleLabel()
         //存檔
         container?.saveContext()
-        
+        //刷新controller
+        self.viewDidLoad()
     }
     
     
